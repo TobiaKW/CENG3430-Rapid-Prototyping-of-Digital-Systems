@@ -92,33 +92,20 @@ initial begin
 	ofifo1_req = 0;
 
 	// Phase 1: Reset & clk
-	always #5 clk = ~clk;//100Mhz
+	// TODO
+	always #5 clk = ~clk;
 
 	#10 rst = 1; //trigger initialization of all registers
 	#20 rst = 0;
 
 	// Phase 2: Init Keccak
+	// TODO
 	#10 keccak_init = 1;
 	#20 keccak_init = 0;
-
 	d = 256'h 2D7F7336_9973CD2D_0348B1CC_251AD82F_DD1A6BDB_E4106D0C_AA9476B0_A035997C;
-	//for every word, 
-	//ififo_wen = 1, write enbale, 0 when last word of block
-	//ififo_din = word,
-	//ififo_absorb = 0,	no absorb for first block
-	//ififo_mode = 00,	8words per block
-	//ififo_last = 0,	1 when last word of block
-
 	// Phase 3: Feed input data
-	for (i = 0; i < 8; i++) begin
-		ififo_wen = 1; 		//bit0
-		ififo_din = d[i*32 :i*32 + 32]; //bit1-32
-		ififo_absorb = d[i*32 + 1]; //bit33
-		ififo_mode = d[i*32 + 2: i*32 + 3]; //bit34-35
-		ififo_last = d[i*32 + ]; // bit36
-	end
+	// TODO
 
-	keccak_ctr = 3'h 1; //start squeezing after feeding
 	// Phase 4: Wait for keccak_ready
 	// TODO
 
