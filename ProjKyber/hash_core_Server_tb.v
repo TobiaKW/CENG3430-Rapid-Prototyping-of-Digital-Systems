@@ -119,9 +119,13 @@ initial begin
 	// TODO
 	@(posedge clk);
 	wait(keccak_ready ==  1'b1);
+	@posedge clk;
 	// Phase 5: Enable output and read
 	// TODO
-
+	keccak_ctr = 3h'1;
+	ofifo_ena = 1'b1;
+	@posedge clk;
+	
 	$finish;
 end
 
